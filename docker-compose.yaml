@@ -61,9 +61,15 @@ services:
   #mysql
   mysql:
     image: mysql:8.0
-    container_name: mysql_db
-    env_file:
-      - ./env/mysql.env
+    container_name: mysql_wiseband
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE_SYMFONY}
+      MYSQL_USER: ${MYSQL_USER_SYMFONY}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD_SYMFONY}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD_SYMFONY}
+    volumes:
+      - ./docker-config/provision/mysql/init/:/docker-entrypoint-initdb.d
+      - ./data/mysql/:/var/lib/mysql
 
 
   #GUI pour base de donnée
@@ -73,8 +79,10 @@ services:
     container_name: phpmyadmin_gui
     ports:
       - '8080:80'
-    env_file:
-      - ./env/phpmyadmin.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD_SYMFONY}
+      PMA_HOST: mysql
+      PMA_PORT: ${MYSQL_PORT}
     depends_on:
       - mysql
 
