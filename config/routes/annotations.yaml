@@ -1,7 +1,7 @@
 controllers:
-    resource: ../../src/Controller/
+    resource: ../../src/Festival/Infrastructure/Symfony5/Controller/
     type: annotation
 
 kernel:
-    resource: ../../src/Kernel.php
+    resource: ../../src/Festival/Infrastructure/Symfony5/Kernel.php
     type: annotation

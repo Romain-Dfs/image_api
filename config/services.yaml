@@ -13,13 +13,30 @@ services:
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-            - '../src/Tests/'
+    Symfony5\Doctrine\:
+        resource: '../src/Festival/Infrastructure/Symfony5/Doctrine/'
+        tags: ['festival.autowire']
+
+    Symfony5\:
+        resource: '../src/Festival/Infrastructure/Symfony5/'
+        exclude: '../src/Festival/Infrastructure/Symfony5/{Doctrine,DependencyInjection,Kernel.php}'
+
+    #    Symfony5\Twig\:
+    #        resource: '../src/Festival/Infrastructure/Symfony5/Twig'
+    #        tags: ['twig.extension']
+
+    Festival\Domain\:
+        resource: '../src/Festival/Domain/'
+        exclude: '../src/Festival/Domain/{**/Entity,**/Error,**/Model}'
+
+    Festival\Presentation\:
+        resource: '../src/Festival/Presentation/'
+        exclude: '../src/Festival/Presentation/{**/Entity,**/Error,**/Model}'
+
+    Symfony5\Controller\:
+        resource: '../src/Festival/Infrastructure/Symfony5/Controller/'
+        tags: ['controller.service_arguments']
+
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

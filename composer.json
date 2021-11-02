@@ -41,7 +41,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Symfony5\\": "src/Festival/Infrastructure/Symfony5/",
+            "Festival\\": "src/Festival/"
         }
     },
     "autoload-dev": {
