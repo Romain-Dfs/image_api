@@ -33,7 +33,7 @@ services:
     build:
       context: docker-config
       dockerfile: composer.dockerfile
-    container_name: composer_cli_epsivent
+    container_name: composer_cli
     volumes:
       - ./:/var/www/html
 
@@ -42,7 +42,7 @@ services:
     build:
       context: docker-config
       dockerfile: symfony.dockerfile
-    container_name: symfony_cli_epsivent
+    container_name: symfony_cli
     volumes:
       - ./:/var/www/html
 
@@ -74,3 +74,23 @@ services:
       PMA_PORT: ${MYSQL_PORT}
     depends_on:
       - mysql
+
+  #Keycloak
+  keycloak:
+    image: jboss/keycloak
+    container_name: keycloak_epsivent
+    environment:
+      DB_VENDOR: mysql
+      DB_ADDR: mysql
+      DB_DATABASE: ${MYSQL_DATABASE_KEYCLOAK}
+      DB_USER: ${MYSQL_USER_KEYCLOAK}
+      DB_PASSWORD: ${MYSQL_PASSWORD_KEYCLOAK}
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+      PROXY_ADDRESS_FORWARDING: 'true'
+    ports:
+      - "28080:8080"
+    depends_on:
+      - mysql
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

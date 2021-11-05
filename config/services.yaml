@@ -33,6 +33,9 @@ services:
         resource: '../src/Festival/Presentation/'
         exclude: '../src/Festival/Presentation/{**/Entity,**/Error,**/Model}'
 
+    Festival\SharedKernel\:
+        resource: '../src/Festival/SharedKernel'
+
     Symfony5\Controller\:
         resource: '../src/Festival/Infrastructure/Symfony5/Controller/'
         tags: ['controller.service_arguments']
