@@ -7,5 +7,6 @@ namespace Festival\Presentation\Artist\ViewModel;
  */
 class DeleteArtistJsonViewModel
 {
-
+    public bool $isDelete = false;
+    public array $errors;
 }

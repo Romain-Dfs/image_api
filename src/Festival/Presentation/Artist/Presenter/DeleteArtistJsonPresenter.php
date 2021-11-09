@@ -20,6 +20,12 @@ class DeleteArtistJsonPresenter implements DeleteArtistPresenter
     public function present(DeleteArtistResponse $response): void
     {
         $this->viewModel = new DeleteArtistJsonViewModel();
+
+        $this->viewModel->isDelete = $response->isArtistDelete();
+
+        foreach ($response->notification()->getErrors() as $error ) {
+            $this->viewModel->errors[$error->fieldName()] = $error->message();
+        }
     }
 
     /**

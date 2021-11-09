@@ -77,4 +77,12 @@ class DoctrineArtistRepository extends ServiceEntityRepository implements Artist
 
         return null;
     }
+
+    public function deleteArtist(int $artistId): void
+    {
+        /** @var ArtistEntity $artist */
+        $artist = $this->findOneBy(['id' => $artistId]);
+        $this->getEntityManager()->remove($artist);
+        $this->getEntityManager()->flush();
+    }
 }

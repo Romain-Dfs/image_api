@@ -10,18 +10,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * La classe DeleteArtistController est un controleur qui va recevoir une requête. Il va ensuite faire appel à nos classes de l'UC DeleteArtist 
- * @Route("nom_de_la_route", methods={"nom_method"})
+ * @Route("/artist/{artistId}", methods={"DELETE"})
  */
 class DeleteArtistController
 {
     public function __invoke(
         DeleteArtist $deleteArtist,
         DeleteArtistJsonPresenter $deleteArtistPresenter,
-        DeleteArtistView $deleteArtistView
+        DeleteArtistView $deleteArtistView,
+        int $artistId
     )
     {
         // On initialise un objet Request qui va contenir les informations à passer à l'UC
         $deleteArtistRequest = new DeleteArtistRequest();
+        $deleteArtistRequest->artistId = $artistId;
 
         // On appel ensuite la méthode execute de notre UC qui s'occupe contient notre logique métier
         $deleteArtist->execute($deleteArtistRequest, $deleteArtistPresenter);

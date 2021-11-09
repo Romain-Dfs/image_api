@@ -7,5 +7,5 @@ namespace Festival\Domain\Artist\UseCase\DeleteArtist;
  */
 class DeleteArtistRequest
 {
-
+    public int $artistId;
 }
