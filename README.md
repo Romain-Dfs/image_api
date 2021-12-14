@@ -1,48 +1,23 @@
-# Squelette de Wiseband 3.0
+# API de FileManagement pour le réseau social ShareMoumouth
 
-Ce depôt git contient une application Symfony de base avec un environnement docker. 
+Ce depôt git contient une API de FileManagement pour le réseau social ShareMoumouth
+Le projet utilise le Framework Symfony, le CDN Cloudinary, et est build en Clean Architecture.
 Vous trouverez ci-dessous les étapes nécessaire à l'installation et l'utilisation de ce dépot
 
-### Récupérer le dépôt et l'utiliser 
+### Liste des commandes
 
-Pour récupérer le dépot, faites :<br> 
-`git clone https://votre_token_github@github.com/hpmousse/WBsquelette.git`<br>
-**N'oubliez pas de bien indiquez votre token**
+Se placer au niveau du Makefile
 
-### Créer vote branche git 
-
-Pour réaliser vos modifications, vous pouvez créer votre branche afin de ne pas modifier la branche principale **main**.<br>
-Pour modifier la branche **main**, vous pouvez réaliser une PR afin de valider les modifications.
-
-### Installer les dépendances 
-
-Quand vous récupérez le dépôt, il est important d'initialiser les dépendances. Rendez vous dans **/WBsquelette** et réaliser un `make install` qui va installer toutes les dépendances nécessaires au bon fonctionnement de l'instance Symfony.
-
-### Lancer et stopper l'instance Symfony
-
-**Une fois les dépendances installées**, vous pouvez lancer votre application Symfony avec la commande `make dev` qui vient lancer l'environnement de développement.
-
-Pour arrêter l'instance Symfony, lancez la commande `make stop` qui vient arrêter totalement l'application.
+- Installer les dépendances : `make install`
+- Lancer l'environnement de dev : `make dev`
+- Stopper l'environnement de dev : `make stop`
 
 ### L'environnement de développement 
 
 - `localhost:8000` : Contient l'environnement Symfony
 - `localhost:8080` : Permet d'accéder à l'outil de gestion de DB
 
-### Utiliser Composer et Symfony
+### Le stockage des images
 
-Pour éviter tous les problèmes d'environnement, vous n'êtes pas obligé d'installer Composer et Symfony sur votre environnement, ils sont présent dans le docker.
-
-Pour les utiliser, il est donc nécessaire de passer par les conteneurs et pour simplifier la tâche, un fichier **aliases.sh** permet de lancer facilement ces commandes. 
-
-Ce fichier vient installer des aliases sur votre machine seulement dans l'instance shell actuelle. Pour l'exécuter, lancez la commande `. ./aliases.sh`. 
-Pour ne pas lancer cette commande à chaque fois, vous pouvez sinon ajouter ces aliases directement sur votre machine.
-
-### Les commandes Composer et Symfony
-
-Une fois les alias ajoutés, vous avez accès aux commandes suivantes : 
-
-- `sy` : Cette commande équivaut au `php bin/console` très souvent utilisée dans Symfony
-- `comp` : Cette commande est tout simplement la commande `composer`
-- `compreq` : Cette commande correspond à la commande `composer require`
-
+Les images sont stockées sur Cloudflare, et pour vous simplifier la correction si vous souhaitez tester, j'ai laissé mes clés d'API (c'est pas bien, mais j'ai créé un nouveau compte exprès). 
+Je n'ai pas utilisé PostgreSQL (pour le moment) car j'ai un soucis avec mon environnement Docker qui m'empêche de l'installer correctement pour le moment, mais ça sera patch

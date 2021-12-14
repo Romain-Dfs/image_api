@@ -5,7 +5,7 @@ services:
   #nginx
   server:
     image: 'nginx:stable-alpine'
-    container_name: nginx_epsivent
+    container_name: nginx_fileManager
     ports:
       - '8000:80'
     volumes:
@@ -24,7 +24,7 @@ services:
     build:
       context: docker-config
       dockerfile: php.dockerfile
-    container_name: php_epsivent
+    container_name: php_fileManager
     volumes:
       - ./:/var/www/html
 
@@ -50,7 +50,7 @@ services:
   #mysql
   mysql:
     image: mysql:8.0
-    container_name: mysql_epsivent
+    container_name: mysql_fileManager
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE_SYMFONY}
       MYSQL_USER: ${MYSQL_USER_SYMFONY}
@@ -65,7 +65,7 @@ services:
   #phpmyadmin
   phpmyadmin:
     image: phpmyadmin
-    container_name: phpmyadmin_epsivent
+    container_name: phpmyadmin_fileManager
     ports:
       - '8080:80'
     environment:
