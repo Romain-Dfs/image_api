@@ -73,4 +73,28 @@ class DoctrineImageRepository extends ServiceEntityRepository implements ImageRe
 
         return $imageIsDeleted;
     }
+
+    public function updateImage(int $id, string $imagePath): bool
+    {
+        /** @var ImageEntity $imageEntity */
+        $imageEntity = $this->findOneBy(["id" => $id]);
+
+        if ( $imageEntity ) {
+            $cloudinaryManager = new CloudinaryManager();
+            $data = $cloudinaryManager->updateImage($imagePath, $imageEntity->getCloudinaryId() )->getArrayCopy();
+        } else {
+            return false;
+        }
+
+        if ( $data ) {
+            $imageEntity->setUrl($data["url"]);
+            $imageEntity->setCloudinaryId($data["public_id"]);
+            $imageEntity->setFormat($data["format"]);
+
+            $this->getEntityManager()->persist($imageEntity);
+            $this->getEntityManager()->flush();
+        }
+
+        return $data && $imageEntity;
+    }
 }

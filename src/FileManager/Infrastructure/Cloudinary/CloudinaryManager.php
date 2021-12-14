@@ -40,4 +40,16 @@ class CloudinaryManager
 
         return $response;
     }
+
+    public function updateImage(string $path, string $cloudinaryId): ?ApiResponse
+    {
+        /** @var ApiResponse $response */
+        $response = null;
+        try {
+            $response = $this->cloudinary->uploadApi()->upload($path, ["public_id" => $cloudinaryId]);
+        } catch (ApiError $e) {
+        }
+
+        return $response;
+    }
 }
