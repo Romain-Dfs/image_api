@@ -16,8 +16,13 @@ class UploadImage implements UploadImageInterface
         $response = new UploadImageResponse();
 
         // On sauvegarde l'image en DB
-        $newImageId = $this->repository->uploadImage($request->url, $request->cloudinaryId, $request->format);
-        $response->setId($newImageId);
+        $newImageId = $this->repository->uploadImage($request->filePath);
+
+        if ( $newImageId ) {
+            $response->setId($newImageId);
+        } else {
+            $response->addError("upload_failed", "Une erreur est survenue lors de la sauvegarde de l'image en DB !");
+        }
 
         // On présente la réponse en JSON
         $presenter->present($response);

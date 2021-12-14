@@ -1,18 +1,18 @@
 <?php
 
-namespace FileManager\Domain\Image\UseCase\UploadImage;
+namespace FileManager\Domain\Image\UseCase\DeleteImage;
 
 use FileManager\SharedKernel\Error\Notification;
 
-class UploadImageResponse
+class DeleteImageResponse
 {
-    private ?int $imageId;
     private Notification $note;
+    private bool $isDeleted;
 
     public function __construct()
     {
         $this->note = new Notification();
-        $this->imageId = null;
+        $this->isDeleted = false;
     }
 
     public function addError(string $fieldName, string $error)
@@ -25,13 +25,21 @@ class UploadImageResponse
         return $this->note;
     }
 
-    public function Id(): ?int
+    /**
+     * @return bool
+     */
+    public function isDeleted(): bool
     {
-        return $this->imageId;
+        return $this->isDeleted;
     }
 
-    public function setId(int $imageId): void
+    /**
+     * @param bool $isDeleted
+     */
+    public function setIsDeleted(bool $isDeleted): void
     {
-        $this->imageId = $imageId;
+        $this->isDeleted = $isDeleted;
     }
+
+
 }

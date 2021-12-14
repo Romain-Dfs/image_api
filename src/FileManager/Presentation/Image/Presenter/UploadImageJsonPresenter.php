@@ -15,6 +15,10 @@ class UploadImageJsonPresenter implements UploadImagePresenterInterface
     {
         $this->viewModel = new UploadImageJsonViewModel();
         $this->viewModel->imageId = $response->Id();
+
+        foreach ( $response->notification()->getErrors() as $error ) {
+            $this->viewModel->errors[$error->fieldName()] = $error->message();
+        }
     }
 
     public function viewModel(): UploadImageJsonViewModel

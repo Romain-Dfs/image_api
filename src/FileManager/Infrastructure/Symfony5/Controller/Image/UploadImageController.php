@@ -2,9 +2,11 @@
 
 namespace Symfony5\Controller\Image;
 
+use Cloudinary\Api\Exception\ApiError;
 use Cloudinary\Cloudinary;
 use FileManager\Domain\Image\UseCase\UploadImage\UploadImage;
 use FileManager\Domain\Image\UseCase\UploadImage\UploadImageRequest;
+use FileManager\Infrastructure\Cloudinary\CloudinaryManager;
 use FileManager\Presentation\Image\Presenter\UploadImageJsonPresenter;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -36,23 +38,7 @@ class UploadImageController
             return new JsonResponse(["error" => "Le format de fichier est invalide !"]);
         }
 
-        $cloudinary = new Cloudinary([
-            'cloud' => [
-                'cloud_name' => 'kiwiman',
-                'api_key' => '978361956771144',
-                'api_secret' => '7GkTfwSUMK2WzkypQ-3wQCVaKGo'
-            ],
-            'url' => [
-                'secure' => true
-            ],
-        ]);
-
-        $cloudinaryImageData = $cloudinary->uploadApi()->upload( $file->getRealPath() )->getArrayCopy();
-
-        $imageUrl = $cloudinaryImageData['url'];
-        $imageId = $cloudinaryImageData['public_id'];
-        $imageFormat = $cloudinaryImageData['format'];
-        $uploadImageRequest = new UploadImageRequest($imageUrl, $imageId, $imageFormat);
+        $uploadImageRequest = new UploadImageRequest($file->getRealPath());
 
         $uploadImage->execute($uploadImageRequest, $uploadImagePresenter);
 

@@ -4,5 +4,7 @@ namespace FileManager\Domain\Image\Entity;
 
 interface ImageRepository
 {
-    public function uploadImage(string $url, string $cloudinaryId, string $format): int;
+    public function uploadImage(string $imagePath): ?int;
+    public function getImage(int $id): ?Image;
+    public function deleteImage(int $id): bool;
 }

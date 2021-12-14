@@ -2,8 +2,8 @@
 
 namespace FileManager\Presentation\Image\ViewModel;
 
-class UploadImageJsonViewModel
+class DeleteImageJsonViewModel
 {
-    public ?int $imageId;
+    public bool $isDeleted;
     public array $errors;
 }
