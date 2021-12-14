@@ -1,4 +1,7 @@
 {
+    "cloudinary/cloudinary_php": {
+        "version": "2.5.1"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.4"
     },
@@ -82,14 +85,11 @@
     "doctrine/sql-formatter": {
         "version": "1.1.1"
     },
-    "firebase/php-jwt": {
-        "version": "v4.0.0"
-    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
     "guzzlehttp/guzzle": {
-        "version": "7.4.0"
+        "version": "7.4.1"
     },
     "guzzlehttp/promises": {
         "version": "1.5.1"
@@ -97,32 +97,17 @@
     "guzzlehttp/psr7": {
         "version": "2.1.0"
     },
-    "knpuniversity/oauth2-client-bundle": {
-        "version": "2.8",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "1.20",
-            "ref": "1ff300d8c030f55c99219cc55050b97a695af3f6"
-        },
-        "files": [
-            "config/packages/knpu_oauth2_client.yaml"
-        ]
-    },
     "laminas/laminas-code": {
         "version": "4.4.2"
     },
-    "league/oauth2-client": {
-        "version": "2.6.0"
+    "monolog/monolog": {
+        "version": "2.3.5"
     },
     "myclabs/deep-copy": {
         "version": "1.10.2"
     },
     "nikic/php-parser": {
         "version": "v4.12.0"
-    },
-    "paragonie/random_compat": {
-        "version": "v9.99.100"
     },
     "phar-io/manifest": {
         "version": "2.0.3"
@@ -243,8 +228,8 @@
     "sebastian/version": {
         "version": "3.0.2"
     },
-    "stevenmaguire/oauth2-keycloak": {
-        "version": "2.2.2"
+    "shrikeh/teapot": {
+        "version": "v2.3.1"
     },
     "symfony/browser-kit": {
         "version": "v5.3.4"
@@ -503,6 +488,9 @@
     },
     "symfony/yaml": {
         "version": "v5.3.6"
+    },
+    "teapot/status-code": {
+        "version": "v1.1.2"
     },
     "theseer/tokenizer": {
         "version": "1.2.1"
