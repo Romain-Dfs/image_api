@@ -27,6 +27,8 @@ services:
     container_name: php_fileManager
     volumes:
       - ./:/var/www/html
+    depends_on:
+      - mysql
 
   #composer
   composer:

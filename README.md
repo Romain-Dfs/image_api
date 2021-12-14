@@ -9,6 +9,7 @@ Vous trouverez ci-dessous les étapes nécessaire à l'installation et l'utilisa
 Se placer au niveau du Makefile
 
 - Installer les dépendances : `make install`
+- Installer la db : `make build` puis taper `yes`
 - Lancer l'environnement de dev : `make dev`
 - Stopper l'environnement de dev : `make stop`
 

@@ -5,5 +5,11 @@ stop:
 dev:
 	docker-compose up -d --build server symfony mysql phpmyadmin
 
+build:
+	docker-compose up -d php
+	docker exec -it php_fileManager php bin/console doctrine:migrations:migrate
+	docker stop mysql_fileManager php_fileManager
+	docker rm mysql_fileManager php_fileManager
+
 install:
 	docker-compose run --rm composer install
