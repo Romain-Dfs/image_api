@@ -7,6 +7,7 @@ dev:
 
 build:
 	docker-compose up -d php
+	sleep 10s
 	docker exec -it php_fileManager php bin/console doctrine:migrations:migrate
 	docker stop mysql_fileManager php_fileManager
 	docker rm mysql_fileManager php_fileManager
